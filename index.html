@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Aplicație Service PC cu Diagnostic AI, Dashboard statistic, Sistem programări și Factură PDF.">
+<meta name="keywords" content="Service PC, Diagnostic AI, Reparații Calculator, Upgrade Hardware">
+<meta name="author" content="David Rusu">
+    <title>Service PC Profesional</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="img/favicon.ico">
+</head>
+<body>
+
+
+    <section class="admin-login">
+
+    <h2>Admin Login</h2>
+
+    <input type="password" id="adminPass" placeholder="Parolă Admin">
+    <button onclick="adminLogin()">Login</button>
+
+    <p id="adminMessage"></p>
+
+</section>
+
+    <header>
+        <nav class="navbar">
+            <h2 class="logo">TechRepair</h2>
+            <ul>
+                <li><a href="#acasa">Acasă</a></li>
+                <li><a href="#servicii">Servicii</a></li>
+                <li><a href="#despre">Despre</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-text">
+            <h1>Reparații PC & Diagnosticare Profesională</h1>
+            <p>Testare plăci de bază, componente hardware și soluții rapide.</p>
+            <button>Solicită diagnostic</button>
+        </div>
+    </section>
+
+    <section class="project-info">
+    <h2>Despre Proiect</h2>
+    <p>
+        Această aplicație simulează un sistem complet de service PC
+        cu diagnostic AI, istoric persistent, dashboard statistic,
+        recomandare automată upgrade și sistem programări.
+    </p>
+</section>
+
+    <section class="services">
+        <h2>Serviciile Noastre</h2>
+        <div class="cards">
+            <div class="card">
+                <h3>Diagnosticare</h3>
+                <p>Testare completă hardware și software.</p>
+            </div>
+            <div class="card">
+                <h3>Reparații</h3>
+                <p>Plăci de bază, surse, RAM, SSD.</p>
+            </div>
+            <div class="card">
+                <h3>Upgrade</h3>
+                <p>Îmbunătățire performanță sistem.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="about">
+        <h2>Despre Noi</h2>
+        <p>Oferim servicii profesionale de reparații și mentenanță IT.</p>
+    </section>
+    <section class="education">
+    <h2>Componente Placă de Bază</h2>
+    <div class="edu-cards">
+
+        <div class="edu-card">
+            <h3>Procesor (CPU)</h3>
+            <p>Creierul calculatorului. Procesează toate instrucțiunile.</p>
+            <button onclick="showInfo('cpu')">Află mai mult</button>
+        </div>
+
+        <div class="edu-card">
+            <h3>Memorie RAM</h3>
+            <p>Stochează temporar datele utilizate de sistem.</p>
+            <button onclick="showInfo('ram')">Află mai mult</button>
+        </div>
+
+        <div class="edu-card">
+            <h3>Slot PCI</h3>
+            <p>Permite conectarea plăcii video sau altor extensii.</p>
+            <button onclick="showInfo('pci')">Află mai mult</button>
+        </div>
+
+    </div>
+</section>
+
+<section class="wizard">
+
+    <h2>Diagnostic Wizard AI</h2>
+
+    <div class="progress-bar">
+        <div class="progress"></div>
+    </div>
+
+    <!-- STEP 1 -->
+    <div class="step active" id="step1">
+        <h3>Pasul 1: Selectează problema</h3>
+        <select id="problem">
+            <option value="">-- Selectează --</option>
+            <option value="no_power">PC nu pornește</option>
+            <option value="no_display">Nu apare imagine</option>
+            <option value="slow">PC se mișcă lent</option>
+            <option value="overheat">Se supraîncălzește</option>
+        </select>
+        <button onclick="nextStep(1)">Continuă</button>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="step" id="step2">
+        <h3>Pasul 2: Răspunde la întrebări</h3>
+        <div id="questions"></div>
+        <button onclick="analyze()">Analizează</button>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="step" id="step3">
+        <h3>AI Analizing...</h3>
+        <div class="loader"></div>
+    </div>
+
+    <!-- STEP 4 -->
+    <div class="step" id="step4">
+        <h3>Raport Diagnostic</h3>
+        <div id="final-result"></div>
+        <div class="probability-bar">
+            <div id="prob-fill"></div>
+        </div>
+        <img id="final-img" src="" alt="">
+        <button onclick="generateReport()">Generează Raport</button>
+
+       <h4>Istoric Diagnoze</h4>
+ <div id="history"></div>
+ <button onclick="clearHistory()">Șterge Istoric</button>
+
+    </div>
+
+
+
+        <div id="extra-questions"></div>
+
+       
+
+        <div id="result"></div>
+        <img id="result-img" src="" alt="">
+    </div>
+</section>
+
+<section class="dashboard">
+
+    <h2>Dashboard Statistic</h2>
+
+    <div class="stats-container">
+
+        <div class="stat-card">
+            <h3>Total Diagnoze</h3>
+            <p id="total-diagnoses">0</p>
+        </div>
+
+        <div class="stat-card">
+            <h3>Problemă Frecventă</h3>
+            <p id="top-problem">-</p>
+        </div>
+
+        <div class="stat-card">
+            <h3>Componentă Frecventă</h3>
+            <p id="top-component">-</p>
+        </div>
+
+        <div class="stat-card">
+            <h3>Probabilitate Medie</h3>
+            <p id="avg-percent">0%</p>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="ai-upgrade">
+
+    <h2>AI Recomandare Upgrade</h2>
+
+    <div class="upgrade-card">
+        <p id="upgrade-message">
+            Nu există suficiente date pentru analiză.
+        </p>
+    </div>
+
+</section>
+
+<section class="booking">
+
+    <h2>Programare Intervenție</h2>
+
+    <form id="bookingForm">
+
+        <input type="text" id="clientName" placeholder="Nume client" required>
+
+        <input type="email" id="clientEmail" placeholder="Email" required>
+
+        <select id="serviceType" required>
+    <option value="">Selectează serviciul</option>
+    <option value="Diagnostic">Diagnostic</option>
+    <option value="Reparație">Reparație</option>
+    <option value="Upgrade Hardware">Upgrade Hardware</option>
+</select>
+
+<p id="estimatedCost">Cost estimat: 0 RON</p>
+
+
+        <input type="date" id="bookingDate" required>
+        <input type="time" id="bookingTime" required>
+
+        <button type="submit">Programează</button>
+
+    </form>
+
+    <h3>Programări Active</h3>
+    <div id="bookingList"></div>
+
+</section>
+    <section class="contact">
+
+    <h2>Contactează-ne</h2>
+
+    <form id="contactForm">
+        <input type="text" placeholder="Nume" required>
+        <input type="email" placeholder="Email" required>
+        <textarea placeholder="Mesaj" required></textarea>
+        <button type="submit">Trimite Mesaj</button>
+    </form>
+
+    <p id="form-message"></p>
+
+</section>
+
+<footer>
+    <p>© 2026 TechRepair AI | Service Profesional PC</p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<script src="script.js"></script>
+</html>
